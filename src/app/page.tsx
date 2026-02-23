@@ -23,7 +23,7 @@ export default function Home() {
       <section className={styles.heroCard}>
         <div className={styles.heroImageWrapper}>
           <Image
-            src="/images/hero.png"
+            src="/img/01.jpg"
             alt="Bulguksa"
             fill
             className={styles.heroImg}
