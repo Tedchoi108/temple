@@ -5,60 +5,88 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <main className={styles.main}>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroImageContainer}>
+      <header className={styles.header}>
+        <div className={styles.profileSection}>
+          <div className={styles.welcome}>
+            <p>천년의 신비</p>
+            <h1>경주 가이드</h1>
+          </div>
+          <div className={styles.avatar}>🏛️</div>
+        </div>
+
+        <div className={styles.searchBar}>
+          <span className={styles.searchIcon}>🔍</span>
+          <input type="text" placeholder="어디를 탐험하고 싶으신가요?" />
+        </div>
+      </header>
+
+      <section className={styles.heroCard}>
+        <div className={styles.heroImageWrapper}>
           <Image
             src="/images/hero.png"
-            alt="Bulguksa Temple"
+            alt="Bulguksa"
             fill
-            priority
-            className={styles.heroImage}
+            className={styles.heroImg}
           />
-          <div className={styles.overlay} />
+          <div className={styles.heroBadge}>추천</div>
         </div>
+        <div className={styles.heroInfo}>
+          <h2>불국사의 아침</h2>
+          <p>세계가 인정한 신라 불교 예술의 정수</p>
+          <Link href="/explore">
+            <button className={styles.exploreBtn}>지금 탐험하기</button>
+          </Link>
+        </div>
+      </section>
 
-        <div className={styles.heroContent}>
-          <h1 className="fade-in">불국사의 영혼, <br />AR로 다시 깨어나다</h1>
-          <p className="fade-in">천년의 신비, 불국사와 석굴암을 가장 지능적인 방식으로 탐험하세요.</p>
-          <div className={styles.ctaGroup}>
-            <Link href="/explore">
-              <button className={styles.primaryBtn}>탐험 시작하기</button>
-            </Link>
-            <button className={styles.secondaryBtn}>앱 가이드 보기</button>
+      <section className={styles.categories}>
+        <div className={styles.sectionHeader}>
+          <h3>탐험 카테고리</h3>
+          <Link href="/explore">전체보기</Link>
+        </div>
+        <div className={styles.categoryGrid}>
+          <div className={styles.catItem}>
+            <div className={styles.catIcon}>🏯</div>
+            <span>사찰</span>
+          </div>
+          <div className={styles.catItem}>
+            <div className={styles.catIcon}>🗿</div>
+            <span>석굴</span>
+          </div>
+          <div className={styles.catItem}>
+            <div className={styles.catIcon}>🗼</div>
+            <span>탑</span>
+          </div>
+          <div className={styles.catItem}>
+            <div className={styles.catIcon}>🎞️</div>
+            <span>AR 코스</span>
           </div>
         </div>
       </section>
 
-      {/* Quick Features */}
-      <section className={styles.features}>
-        <div className="container">
-          <div className={styles.featureGrid}>
-            <div className={`${styles.featureCard} glass`}>
-              <div className={styles.icon}>🎥</div>
-              <h3>AR 스캔 가이드</h3>
-              <p>스마트폰 카메라로 유물을 비추면 3D 정보와 역사가 눈앞에 펼쳐집니다.</p>
+      <section className={styles.featuredSection}>
+        <div className={styles.sectionHeader}>
+          <h3>인기 있는 장소</h3>
+        </div>
+        <div className={styles.horizontalScroll}>
+          <div className={styles.placeCard}>
+            <div className={styles.placeImgPlaceholder}>💎</div>
+            <h4>석굴암</h4>
+            <div className={styles.placeMeta}>
+              <span>⭐ 4.9</span>
+              <span>📍 4.2km</span>
             </div>
-            <div className={`${styles.featureCard} glass`}>
-              <div className={styles.icon}>🎧</div>
-              <h3>GPS 상황인지 가이드</h3>
-              <p>당신의 위치를 파악하여 자동으로 깊이 있는 오디오 해설을 제공합니다.</p>
-            </div>
-            <div className={`${styles.featureCard} glass`}>
-              <div className={styles.icon}>💬</div>
-              <h3>AI 문화재 챗봇</h3>
-              <p>궁금한 점은 무엇이든 물어보세요. 불국사 전문가가 즉시 답변해 드립니다.</p>
+          </div>
+          <div className={styles.placeCard}>
+            <div className={styles.placeImgPlaceholder}>🏮</div>
+            <h4>다보탑</h4>
+            <div className={styles.placeMeta}>
+              <span>⭐ 4.8</span>
+              <span>📍 0.1km</span>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Footer Branding */}
-      <footer className={styles.footer}>
-        <div className="container">
-          <p>© 2026 Gyeongju Heritage AR Guide. All rights reserved.</p>
-        </div>
-      </footer>
     </main>
   );
 }

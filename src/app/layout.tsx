@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
+import BottomNav from "@/components/ui/BottomNav";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -16,9 +17,19 @@ const notoSerifKR = Noto_Serif_KR({
 export const metadata: Metadata = {
   title: "Gyeongju Heritage AR Guide | Bulguksa & Seokguram",
   description: "Experience the spiritual beauty of Bulguksa and Seokguram through AR and GPS-based intelligent guidance.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Gyeongju AR",
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export const viewport = {
+  themeColor: "#435BD5",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -32,8 +43,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${inter.variable} ${notoSerifKR.variable}`}>
+      <head>
+        <link rel="apple-touch-icon" href="/icon.png" />
+      </head>
       <body>
         {children}
+        <BottomNav />
       </body>
     </html>
   );

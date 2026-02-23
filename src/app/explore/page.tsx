@@ -1,52 +1,49 @@
 import MapViewer from "@/components/map/MapViewer";
 import ChatInterface from "@/components/chatbot/ChatInterface";
 import styles from "./explore.module.css";
-import Link from "next/link";
 
 export default function ExplorePage() {
     return (
         <main className={styles.container}>
-            <header className={styles.header}>
-                <Link href="/" className={styles.backBtn}>← 홈으로</Link>
-                <h1>불국사 실시간 탐험</h1>
-            </header>
+            <div className={styles.mapContainer}>
+                <MapViewer />
+            </div>
 
-            <div className={styles.content}>
-                <div className={styles.mapSection}>
-                    <MapViewer />
-                </div>
+            <div className={styles.bottomSheet}>
+                <div className={styles.handle}></div>
 
-                <aside className={styles.poiList}>
-                    <div className={styles.poiSubsection}>
+                <section className={styles.section}>
+                    <div className={styles.sectionHeader}>
                         <h2>주요 문화재</h2>
-                        <div className={styles.list}>
-                            <div className={styles.poiItem}>
-                                <span>다보탑</span>
-                                <button>해설 듣기</button>
+                        <span>3개 위치</span>
+                    </div>
+
+                    <div className={styles.poiScroll}>
+                        <div className={styles.poiCard}>
+                            <div className={styles.poiInfo}>
+                                <h3>다보탑</h3>
+                                <p>통일신라의 화려한 탑</p>
                             </div>
-                            <div className={styles.poiItem}>
-                                <span>석가탑</span>
-                                <button>해설 듣기</button>
+                            <button className={styles.actionBtn}>해설</button>
+                        </div>
+                        <div className={styles.poiCard}>
+                            <div className={styles.poiInfo}>
+                                <h3>석가탑</h3>
+                                <p>절제의 미학을 담은 탑</p>
                             </div>
-                            <div className={styles.poiItem}>
-                                <span>석굴암</span>
-                                <button>이동하기</button>
-                            </div>
+                            <button className={styles.actionBtn}>해설</button>
                         </div>
                     </div>
+                </section>
 
-                    <div className={styles.chatSection}>
-                        <h3 className={styles.sectionTitle}>지능형 해설 챗봇</h3>
-                        <ChatInterface />
+                <section className={styles.section}>
+                    <div className={styles.sectionHeader}>
+                        <h2>AI 가이드 피드</h2>
                     </div>
+                    <ChatInterface />
+                </section>
 
-                    <div className={styles.arSection}>
-                        <button className={styles.arBtn}>
-                            <span className={styles.arIcon}>📷</span>
-                            AR 스캔 시작하기
-                        </button>
-                    </div>
-                </aside>
+                <div className={styles.spacer}></div>
             </div>
         </main>
     );

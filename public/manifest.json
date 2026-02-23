@@ -1,0 +1,17 @@
+{
+  "name": "경주 사찰 AR 가이드",
+  "short_name": "불국사AR",
+  "description": "경주 불국사와 석굴암을 위한 지능형 AR 가이드 앱",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#435BD5",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
