@@ -1,0 +1,140 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    /* Covering bottom navigation and app bars */
+    background: black;
+}
+
+.arFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    /* iframe sits behind overlays */
+}
+
+/* User Interface overlays over iframe */
+.hudOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    /* Let clicks pass to the iframe mostly */
+}
+
+.backBtn {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: var(--radius-lg);
+    font-weight: 700;
+    pointer-events: auto;
+    /* Re-enable clicks */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.statusBox {
+    background: rgba(67, 91, 213, 0.9);
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-xl);
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #FFF;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Tutorial Dialog */
+.tutorialOverlay {
+    position: absolute;
+    top: 0;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.tutorialContent {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.scanIcon {
+    font-size: 3rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+}
+
+.tutorialContent h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.tutorialContent p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.understandBtn {
+    background: var(--primary-blue);
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 1rem;
+}
