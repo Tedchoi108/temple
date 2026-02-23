@@ -10,7 +10,7 @@ interface Message {
 
 export default function ChatInterface() {
     const [messages, setMessages] = useState<Message[]>([
-        { role: 'assistant', content: '안녕하세요! 불국사와 석굴암에 대해 무엇이든 물어보세요.' }
+        { role: 'assistant', content: '합장합니다. 천년의 세월을 품은 이곳에서 무엇이 마음에 닿으셨는지요?' }
     ]);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
@@ -26,15 +26,16 @@ export default function ChatInterface() {
         // Mock AI Response - In Phase 4 we will integrate real Gemini
         setTimeout(() => {
             let response = "";
-            if (input.includes("다보탑")) {
-                response = "다보탑은 신라 경덕왕 때 세워진 석탑으로, 복잡한 구조와 화려함이 특징입니다. 국보 20호로 지정되어 있습니다.";
-            } else if (input.includes("석굴암")) {
-                response = "석굴암은 인공적으로 쌓아 만든 석굴 사찰로, 신라 시대의 고도의 건축 지식과 예술성을 보여줍니다.";
+            if (input.includes("다보탑") || input.includes("탑")) {
+                response = "다보탑의 복잡하고 화려한 문양 속에는 신라 장인들의 간절한 염원이 스며있습니다. 국보 20호로, 변치 않는 진리를 상징하지요.";
+            } else if (input.includes("석굴암") || input.includes("굴")) {
+                response = "석굴암은 인공적으로 둥글게 쌓아 올린 돔 구조에 부처님의 자비로운 미소를 모신 곳입니다. 동해의 아침 해가 가장 먼저 닿는 고요한 성전이지요.";
             } else {
-                response = "정말 흥미로운 질문이네요! 불국사의 천년 역사는 알면 알수록 신비롭습니다. 어떤 부분을 더 구체적으로 알고 싶으신가요?";
+                response = "귀를 기울여 듣고 있습니다. 마음 가는 곳을 조금 더 자세히 일러주시겠습니까?";
             }
 
             setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+
             setLoading(false);
         }, 1000);
     };
@@ -47,7 +48,7 @@ export default function ChatInterface() {
                         <div className={styles.bubble}>{msg.content}</div>
                     </div>
                 ))}
-                {loading && <div className={styles.loading}>해설가가 생각 중입니다...</div>}
+                {loading && <div className={styles.loading}>생각을 가다듬는 중입니다...</div>}
             </div>
 
             <div className={styles.inputArea}>
