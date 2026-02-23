@@ -1,35 +1,44 @@
 :root {
-  /* HomeApp UI Kit Inspired Palette */
-  --primary-blue: #435BD5;
-  --primary-blue-dark: #3244A6;
-  --secondary-gold: #C5A059;
+  /* Zen Style Inspired Palette */
+  --primary-color: #1A1A1A;
+  /* 먹색 블랙 */
+  --secondary-color: #555555;
 
-  --bg-main: #F8F9FA;
+  --bg-main: #F5F5F5;
+  /* 연회색 */
   --bg-surface: #FFFFFF;
+  /* 화이트 */
 
-  --text-primary: #1A1D1F;
-  --text-secondary: #6F767E;
+  --text-primary: #1A1A1A;
+  --text-secondary: #808080;
+  /* 중간 회색 */
+  --text-muted: #B3B3B3;
+
+  --border-light: #E0E0E0;
 
   --error: #FF6A55;
   --success: #83BF6E;
 
-  --radius-xl: 32px;
-  --radius-lg: 24px;
-  --radius-md: 16px;
-  --radius-sm: 12px;
+  /* Minimal Border Radius for Zen Style */
+  --radius-xl: 12px;
+  --radius-lg: 8px;
+  --radius-md: 4px;
+  --radius-sm: 2px;
 
-  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.04);
-  --shadow-medium: 0 20px 50px rgba(0, 0, 0, 0.08);
+  /* Soft Shadows to avoid floating feel, ground elements */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.05);
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Noto Serif KR', serif;
 }
 
 [data-theme='dark'] {
-  --bg-main: #111315;
-  --bg-surface: #1A1D1F;
-  --text-primary: #FCFCFC;
-  --text-secondary: #9A9FA5;
+  --bg-main: #111111;
+  --bg-surface: #1A1A1A;
+  --text-primary: #F5F5F5;
+  --text-secondary: #808080;
+  --border-light: #333333;
 }
 
 * {
@@ -46,8 +55,9 @@ body {
   background-color: var(--bg-main);
   color: var(--text-primary);
   font-family: var(--font-sans);
+  font-weight: 300;
+  /* 얇고 정적인 고딕 */
   overflow-x: hidden;
-  /* Prevent bounce on iOS */
   position: fixed;
   overflow: hidden;
 }
@@ -64,18 +74,18 @@ main {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 90px;
-  /* Room for bottom nav */
 }
 
 h1,
 h2,
-h3 {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
+h3,
+h4,
 .serif {
   font-family: var(--font-serif);
+  font-weight: 400;
+  /* 명조체는 기본 웨이트로 여백 강조 */
+  letter-spacing: -0.03em;
+  color: var(--primary-color);
 }
 
 button {
@@ -83,11 +93,13 @@ button {
   border: none;
   background: none;
   font-family: inherit;
-  transition: all 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  /* 물결 퍼지듯 부드럽게 */
 }
 
 button:active {
-  transform: scale(0.96);
+  transform: scale(0.98);
+  opacity: 0.8;
 }
 
 .card {
@@ -95,25 +107,52 @@ button:active {
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-light);
 }
 
 .premium-shadow {
   box-shadow: var(--shadow-medium);
 }
 
-/* Animations */
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
+/* Animations - Fog clearing / Water ripple effect */
+@keyframes fogClear {
+  0% {
+    transform: translateY(10px);
     opacity: 0;
+    filter: blur(4px);
   }
 
-  to {
+  100% {
     transform: translateY(0);
     opacity: 1;
+    filter: blur(0);
   }
 }
 
 .slide-up {
-  animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: fogClear 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes rippleFade {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.ripple-fade {
+  animation: rippleFade 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Map specific zen-style styling (Leaflet grayscale map) */
+.leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: grayscale(100%) contrast(0.9) brightness(1.1);
 }

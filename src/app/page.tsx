@@ -4,94 +4,87 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main} ripple-fade`}>
       <header className={styles.header}>
         <div className={styles.profileSection}>
           <div className={styles.welcome}>
-            <p>천년의 신비</p>
-            <h1>경주 가이드</h1>
+            <p className={styles.subtitle}>마음의 거울</p>
+            <h1 className="serif">심경(心鏡)</h1>
           </div>
-          <div className={styles.avatar}>🏛️</div>
-        </div>
-
-        <div className={styles.searchBar}>
-          <span className={styles.searchIcon}>🔍</span>
-          <input type="text" placeholder="어디를 탐험하고 싶으신가요?" />
+          <div className={styles.avatar}>🪞</div>
         </div>
       </header>
 
       <section className={styles.heroCard}>
         <div className={styles.heroImageWrapper}>
+          <div className={styles.heroOverlay}></div>
           <Image
             src="/img/01.jpg"
-            alt="Bulguksa"
+            alt="Zen Temple"
             fill
             className={styles.heroImg}
           />
-          <div className={styles.heroBadge}>추천</div>
         </div>
         <div className={styles.heroInfo}>
-          <h2>불국사의 아침</h2>
-          <p>세계가 인정한 신라 불교 예술의 정수</p>
-          <Link href="/explore">
-            <button className={styles.exploreBtn}>지금 탐험하기</button>
+          <h2 className="serif">천년의 고독 속으로</h2>
+          <p>불국사와 석굴암에서 만나는 비움의 미학</p>
+          <Link href="/ar" className={styles.scanLink}>
+            <button className={styles.zenBtn}>
+              <span className={styles.btnIcon}>👁️</span>
+              사물과 스캔하여 소통하기
+            </button>
           </Link>
         </div>
       </section>
 
-      <section className={styles.categories}>
-        <div className={styles.sectionHeader}>
-          <h3>탐험 카테고리</h3>
-          <Link href="/explore">전체보기</Link>
+      <section className={styles.pillars}>
+        <div className={styles.pillarHeader}>
+          <h3 className="serif">사유의 길 (수행 기능)</h3>
         </div>
-        <div className={styles.categoryGrid}>
-          <div className={styles.catItem}>
-            <div className={styles.catIcon}>🏯</div>
-            <span>사찰</span>
-          </div>
-          <div className={styles.catItem}>
-            <div className={styles.catIcon}>🗿</div>
-            <span>석굴</span>
-          </div>
-          <div className={styles.catItem}>
-            <div className={styles.catIcon}>🗼</div>
-            <span>탑</span>
-          </div>
-          <div className={styles.catItem}>
-            <div className={styles.catIcon}>🎞️</div>
-            <span>AR 코스</span>
+
+        <div className={styles.pillarList}>
+          {/* 1. 지능형 스캔 및 도슨트 */}
+          <Link href="/chatbot" className={styles.pillarCard}>
+            <div className={styles.pillarIcon}>🎧</div>
+            <div className={styles.pillarText}>
+              <h4 className="serif">지능형 챗봇 도슨트</h4>
+              <p>큰스님과 마주하듯 대화하는 멀티모달 오디오 가이드</p>
+            </div>
+          </Link>
+
+          {/* 2. 산책 가이드 */}
+          <Link href="/explore" className={styles.pillarCard}>
+            <div className={styles.pillarIcon}>🧭</div>
+            <div className={styles.pillarText}>
+              <h4 className="serif">사찰 산책 가이드</h4>
+              <p>단순한 수묵화 지도로 만나는 고요한 전각 순례</p>
+            </div>
+          </Link>
+
+          {/* 3. 뷰포인트 & 영성 기록 */}
+          <div className={styles.pillarCard}>
+            <div className={styles.pillarIcon}>📸</div>
+            <div className={styles.pillarText}>
+              <h4 className="serif">AI 마음 저장소</h4>
+              <p>최적의 구도로 계절의 아름다움을 간직하는 영성 기록</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className={styles.featuredSection}>
-        <div className={styles.sectionHeader}>
-          <h3>인기 있는 장소</h3>
-        </div>
-        <div className={styles.horizontalScroll}>
-          <div className={styles.placeCard}>
-            <div className={styles.placeImgPlaceholder}>💎</div>
-            <h4>석굴암</h4>
-            <div className={styles.placeMeta}>
-              <span>⭐ 4.9</span>
-              <span>📍 4.2km</span>
-            </div>
-          </div>
-          <div className={styles.placeCard}>
-            <div className={styles.placeImgPlaceholder}>🏮</div>
-            <h4>다보탑</h4>
-            <div className={styles.placeMeta}>
-              <span>⭐ 4.8</span>
-              <span>📍 0.1km</span>
-            </div>
-          </div>
+      <section className={styles.featureBlock}>
+        <div className={styles.meditationBox}>
+          <span className={styles.meditationIcon}>🎐</span>
+          <h4 className="serif">디지털 템플스테이</h4>
+          <p>1분간 눈을 감고 싱잉볼의 파동을 느껴보세요</p>
+          <button className={styles.zenOutlineBtn}>명상 시작</button>
         </div>
       </section>
 
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <p>© 2026 Gyeongju Heritage AR Guide.</p>
-          <Link href="/admin" className={styles.adminLink}>콘텐츠 관리자 센터 →</Link>
+          <p>© 2026 심경(心鏡) - Zen Temple Guide.</p>
+          <Link href="/admin" className={styles.adminLink}>콘텐츠 서랍 (관리자) →</Link>
         </div>
       </footer>
     </main>

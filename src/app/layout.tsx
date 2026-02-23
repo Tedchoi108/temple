@@ -15,13 +15,13 @@ const notoSerifKR = Noto_Serif_KR({
 });
 
 export const metadata: Metadata = {
-  title: "Gyeongju Heritage AR Guide | Bulguksa & Seokguram",
-  description: "Experience the spiritual beauty of Bulguksa and Seokguram through AR and GPS-based intelligent guidance.",
+  title: "심경(心鏡) - 마음의 거울 | 사찰 가이드",
+  description: "사찰이라는 공간이 주는 정적인 평온함과 첨단 기술이 어우러진 지능형 사찰 가이드",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Gyeongju AR",
+    title: "심경",
   },
   formatDetection: {
     telephone: false,
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#435BD5",
+  themeColor: "#F5F5F5",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
