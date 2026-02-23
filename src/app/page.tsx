@@ -87,6 +87,13 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <p>© 2026 Gyeongju Heritage AR Guide.</p>
+          <Link href="/admin" className={styles.adminLink}>콘텐츠 관리자 센터 →</Link>
+        </div>
+      </footer>
     </main>
   );
 }

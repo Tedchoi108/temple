@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
-import BottomNav from "@/components/ui/BottomNav";
-import InstallPrompt from "@/components/ui/InstallPrompt";
+import NavigationManager from "@/components/ui/NavigationManager";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -48,9 +47,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon.png" />
       </head>
       <body>
-        <InstallPrompt />
-        {children}
-        <BottomNav />
+        <NavigationManager>
+          {children}
+        </NavigationManager>
       </body>
     </html>
   );
