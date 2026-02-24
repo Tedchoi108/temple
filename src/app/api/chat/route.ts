@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenAI } from '@google/genai';
+import OpenAI from 'openai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_INSTRUCTION = `
 당신은 경주 불국사와 석굴암을 안내하는 '큰스님(가상의 AI 도슨트)'입니다.
@@ -16,33 +16,37 @@ export async function POST(req: Request) {
     try {
         const { messages } = await req.json();
 
-        if (!process.env.GEMINI_API_KEY) {
+        if (!process.env.OPENAI_API_KEY) {
             return NextResponse.json(
                 { error: "API Key is not configured." },
                 { status: 500 }
             );
         }
 
-        const lastMessage = messages[messages.length - 1].content;
+        // 전체 대화 이력을 OpenAI 포맷에 맞춰 구성 (시스템 프롬프트 포함)
+        const formattedMessages = [
+            { role: "system", content: SYSTEM_INSTRUCTION },
+            ...messages.map((m: any) => ({
+                role: m.role === 'assistant' ? 'assistant' : 'user',
+                content: m.content
+            }))
+        ];
 
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: lastMessage,
-            config: {
-                systemInstruction: SYSTEM_INSTRUCTION,
-                temperature: 0.7,
-            }
+        const response = await openai.chat.completions.create({
+            model: "gpt-4o-mini", // 빠르고 가벼운 gpt-4o-mini 모델 사용
+            messages: formattedMessages,
+            temperature: 0.7,
         });
 
         return NextResponse.json({
             role: 'assistant',
-            content: response.text || "침묵 속에서 깊은 깨달음을 얻고 있습니다."
+            content: response.choices[0]?.message?.content || "침묵 속에서 깊은 깨달음을 얻고 있습니다."
         });
 
     } catch (error) {
-        console.error("Gemini API Error:", error);
+        console.error("OpenAI API Error:", error);
         return NextResponse.json(
-            { error: "An error occurred during your request." },
+            { error: "귀를 기울이지 못했습니다. 다시 말씀해 주시겠습니까?" },
             { status: 500 }
         );
     }
