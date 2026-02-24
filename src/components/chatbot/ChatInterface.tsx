@@ -23,21 +23,28 @@ export default function ChatInterface() {
         setInput('');
         setLoading(true);
 
-        // Mock AI Response - In Phase 4 we will integrate real Gemini
-        setTimeout(() => {
-            let response = "";
-            if (input.includes("다보탑") || input.includes("탑")) {
-                response = "다보탑의 복잡하고 화려한 문양 속에는 신라 장인들의 간절한 염원이 스며있습니다. 국보 20호로, 변치 않는 진리를 상징하지요.";
-            } else if (input.includes("석굴암") || input.includes("굴")) {
-                response = "석굴암은 인공적으로 둥글게 쌓아 올린 돔 구조에 부처님의 자비로운 미소를 모신 곳입니다. 동해의 아침 해가 가장 먼저 닿는 고요한 성전이지요.";
-            } else {
-                response = "귀를 기울여 듣고 있습니다. 마음 가는 곳을 조금 더 자세히 일러주시겠습니까?";
+        try {
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: [...messages, userMsg] })
+            });
+
+            if (!res.ok) {
+                throw new Error("API 연동 에러");
             }
 
-            setMessages(prev => [...prev, { role: 'assistant', content: response }]);
-
+            const data = await res.json();
+            setMessages(prev => [...prev, data]);
+        } catch (error) {
+            console.error(error);
+            setMessages(prev => [...prev, {
+                role: 'assistant',
+                content: "(시스템) 스님께서 아직 답을 주실 준비가 되지 않으셨습니다. 관리자에게 API 키 등록을 요청해 주세요."
+            }]);
+        } finally {
             setLoading(false);
-        }, 1000);
+        }
     };
 
     return (
